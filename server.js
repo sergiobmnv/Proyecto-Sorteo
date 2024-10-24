@@ -27,8 +27,8 @@ const client = new MongoClient(uri, {
 async function addParticipant(participant) {
   try {
     await client.connect();
-    const database = client.db('sorteos'); // Nombre de la base de datos
-    const collection = database.collection('villa-fc'); // Nombre de la colección
+    const database = client.db('Sorteos'); // Nombre de la base de datos
+    const collection = database.collection('Villa-FC'); // Nombre de la colección
     const result = await collection.insertOne(participant);
     console.log(`Nuevo participante añadido con el id: ${result.insertedId}`);
   } catch (error) {
