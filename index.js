@@ -1,55 +1,55 @@
-
-
-
 const modal = document.getElementById("contenedor-modal");
 const formulario = document.getElementById("form");
 const btn = document.getElementById("botonParticipar");
 
-
 formulario.addEventListener('submit', async function(event) {
   event.preventDefault();
 
-    btn.value = 'Sending...';
+  btn.value = 'Sending...';
 
-    const serviceID = 'service_4f805xl';
-    const templateID = 'template_ug1856j';
+  const serviceID = 'service_4f805xl';
+  const templateID = 'template_ug1856j';
 
-    const nombre = document.getElementById("nombre").value;
-    const correo = document.getElementById("correo").value;
-    const apellido = document.getElementById("apellido").value;
+  const nombre = document.getElementById("nombre").value;
+  const correo = document.getElementById("correo").value;
+  const apellido = document.getElementById("apellido").value;
 
-    const participante = { nombre, correo ,apellido };
+  // Validar que los campos no estén vacíos
+  if (!nombre || !correo) {
+    alert("Por favor, completa todos los campos.");
+    btn.value = 'Send Email'; // Restaurar texto del botón
+    return;
+  }
 
-    try{
-      const response = await fetch('http://localhost:3000/participar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(participante),
-      });
+  const participante = { nombre, correo, apellido };
 
-      if(response.ok){
-        emailjs.sendForm(serviceID, templateID, this).then(() => {
-        btn.value = 'Send Email';
-        modal.style.display = "block";
-        formulario.reset();
-      }, (err) => {
-        btn.value = 'Send Email';
-        alert(JSON.stringify(err));
-      });
-      }else{
-        console.error('Error al enviar los datos');
-      }
+  try {
+    const response = await fetch('http://localhost:3000/participar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(participante),
+    });
 
-    }catch (error){
-      console.error('Error:', error);
+    if (response.ok) {
+      await emailjs.sendForm(serviceID, templateID, this);
+      btn.value = 'Send Email';
+      modal.style.display = "block";
+      formulario.reset();
+    } else {
+      btn.value = 'Send Email';
+      console.error('Error al enviar los datos', response.statusText);
     }
+  } catch (error) {
+    console.error('Error:', error);
+    btn.value = 'Send Email'; // Restaurar texto del botón en caso de error
+  }
 });
 
-//evento para cerrar el modal al pulsar fuera
-window.addEventListener("click", function(event){
-  if(event.target == modal){
-      modal.style.display = "none";
+// Evento para cerrar el modal al pulsar fuera
+window.addEventListener("click", function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 });
