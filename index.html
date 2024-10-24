@@ -11,6 +11,17 @@
     <h1>Bienvenido Al Sorteo Villa FC</h1>
 
     <form id="form">
+
+        <!-- Contador de cuenta regresiva -->
+        <div id="contador-sorteo">
+            <h2>Tiempo restante para participar:</h2>
+            <div id="cuenta-Atras">
+                <span id="dias"></span> days : 
+                <span id="horas"></span> hours : 
+                <span id="minutos"></span> minutes : 
+                <span id="segundos"></span> seconds
+            </div>
+        </div>
         
         <input type="text" id="nombre" placeholder="Nombre" required />
         <br>
@@ -30,7 +41,10 @@
         <button id="botonParticipar">Participar</button>
     </form>
 
-    <!-- Modal -->
+
+        <!--Modales-->
+
+    <!-- Modal Cerrar el aviso cuando te registras en el formulario-->
     <div class="contenedor-modal" id="contenedor-modal">
         <div class="modal">
             <p>Formulario Confirmado</p>
@@ -39,7 +53,16 @@
         </div>
     </div>
 
+    <!-- Modal Ganador -->
+    <div class="contenedor-modal" id="contenedor-ganador" style="display: none;">
+        <div class="modal">
+            <p id="mensaje-ganador"></p>
+            <button id="cerrar-ganador">Cerrar</button>
+        </div>
+    </div>
+
     <script src='index.js'></script>
+    <script src="contador.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">emailjs.init('7dD0BJDjCYOJi1dep');</script>
 </body>
