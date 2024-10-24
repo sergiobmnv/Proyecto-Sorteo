@@ -28,9 +28,8 @@ const x = setInterval(function() {
         clearInterval(x);
         cuentaAtras.innerHTML = "El sorteo ha terminado";
 
-        // Desactivar el formulario
-        formulario.style.display = "none"; // Oculta el formulario
-        mostrarGanador(); // Llama a la función para mostrar el ganador
+        // Mostrar mensaje de cierre del sorteo
+        mostrarCierreSorteo();
     }
 }, 1000);
 
@@ -79,6 +78,18 @@ formulario.addEventListener('submit', async function(event) {
         btn.value = 'Send Email'; // Restaurar texto del botón en caso de error
     }
 });
+
+// Función para mostrar el mensaje de cierre del sorteo
+function mostrarCierreSorteo() {
+    formulario.style.display = "none"; // Ocultar el formulario
+    const mensajeCierre = document.createElement("div");
+    mensajeCierre.style.color = "#ff4757"; // Color del mensaje
+    mensajeCierre.style.fontSize = "24px"; // Tamaño del texto
+    mensajeCierre.style.textAlign = "center"; // Alineación del texto
+    mensajeCierre.innerHTML = "El sorteo ha cerrado. ¡Gracias por participar!";
+    document.body.appendChild(mensajeCierre); // Agregar el mensaje al body
+    mostrarGanador(); // Llama a la función para mostrar el ganador
+}
 
 // Función para mostrar el modal del ganador
 function mostrarGanador() {
