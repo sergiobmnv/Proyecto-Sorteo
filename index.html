@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sorteo FC</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+</head>
+<body>
+
+    <h1>Bienvenido Al Sorteo Villa FC</h1>
+
+    <form id="form">
+        
+        <input type="text" id="nombre" placeholder="Nombre" required />
+        <br>
+        <input type="text" id="apellido" placeholder="Apellido" required />
+        <br>
+        <input type="email" id="correo" placeholder="Correo Electrónico" required />
+        <br>
+        <div class="password-container">
+            <input type="password" id="contrasena" placeholder="Contraseña" required />
+        </div>
+        <br>
+        <div class="field">
+            <input type="checkbox" id="condiciones" name="condiciones" required />
+            Estoy de acuerdo con los <a href="terminos.html" class="enlace-terminos">términos y condiciones</a>
+        </div>
+        <br>
+        <button id="botonParticipar">Participar</button>
+    </form>
+
+    <!-- Modal -->
+    <div class="contenedor-modal" id="contenedor-modal">
+        <div class="modal">
+            <p>Formulario Confirmado</p>
+            <p>¡Mucha suerte!</p>
+            <button id="cerrar-modal">Cerrar</button>
+        </div>
+    </div>
+
+    <script src='index.js'></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">emailjs.init('7dD0BJDjCYOJi1dep');</script>
+</body>
+</html>
