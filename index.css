@@ -173,45 +173,46 @@ a {
 
 /* Estilos para el mensaje del ganador en el modal */
 .modal-ganador {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro para destacar el mensaje */
+    color: #ffffff; /* Color del texto */
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    max-width: 500px;
-    width: 90%;
+    max-width: 500px; /* Ancho máximo para evitar que sea muy grande */
+    width: 90%; /* Ancho adaptable */
 }
 
 .modal-ganador p {
-    font-size: 24px;
-    margin: 15px 0;
+    font-size: 24px; /* Tamaño del texto */
+    margin: 15px 0; /* Espacio superior e inferior */
 }
 
 /* Estilo adicional para el botón de cerrar modal */
 #cerrar-modal-ganador {
-    background-color: #ff4757;
-    color: white;
+    background-color: #ff4757; /* Color del botón */
+    color: white; /* Color del texto */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 14px; /* Tamaño del texto */
 }
 
 #cerrar-modal-ganador:hover {
-    background-color: #ff6b81;
+    background-color: #ff6b81; /* Color al pasar el ratón */
 }
 
+/* Asegúrate de que la clase contenedor-modal se aplique */
 .contenedor-modal-ganador {
-    display: none;
+    display: none; /* Ocultar inicialmente */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con opacidad */
     justify-content: center;
     align-items: center;
 }

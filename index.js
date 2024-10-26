@@ -7,7 +7,7 @@ const mensajeGanador = document.querySelector(".modal-ganador p");
 const cerrarModalGanador = document.getElementById("cerrar-modal-ganador");
 
 // Fecha y hora del final del sorteo
-const fechaFinal = new Date("October 29, 2024 12:00:00").getTime();
+const fechaFinal = new Date("October 26, 2024 16:08:00").getTime();
 
 // Actualizar la cuenta regresiva cada segundo
 const x = setInterval(function() {
@@ -95,17 +95,17 @@ function mostrarCierreSorteo() {
 //Mostrar Ganador.
 
 async function mostrarGanador() {
-    try {
-      const response = await fetch('http://localhost:3000/ganador');
-      if (response.ok) {
-        const data = await response.json();
-        mensajeGanador.innerHTML = `🎉 ¡Felicidades ${data.ganador.nombre} ${data.ganador.apellido}! 🎉 <br> Correo: ${data.ganador.correo}`;
-        contenedorModalGanador.style.display = 'flex'; // Mostrar el modal con el ganador
-      } else {
-        mensajeGanador.innerHTML = 'No se encontró ningún participante.';
-        contenedorModalGanador.style.display = 'flex';
-      }
-    } catch (error) {
-      console.error('Error al obtener el ganador:', error);
+  try {
+    const response = await fetch('http://localhost:3000/ganador');
+    if (response.ok) {
+      const data = await response.json();
+      mensajeGanador.innerHTML = `🎉 ¡Felicidades ${data.ganador.nombre} ${data.ganador.apellido}! 🎉 <br> Correo: ${data.ganador.correo}`;
+      contenedorModalGanador.style.display = 'flex'; // Mostrar el modal con el ganador
+    } else {
+      mensajeGanador.innerHTML = 'No se encontró ningún participante.';
+      contenedorModalGanador.style.display = 'flex';
     }
+  } catch (error) {
+    console.error('Error al obtener el ganador:', error);
   }
+}
