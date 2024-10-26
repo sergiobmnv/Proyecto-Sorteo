@@ -90,3 +90,22 @@ function mostrarCierreSorteo() {
     document.body.appendChild(mensajeCierre); // Agregar el mensaje al body
     mostrarGanador(); // Llama a la función para mostrar el ganador
 }
+
+
+//Mostrar Ganador.
+
+async function mostrarGanador() {
+    try {
+      const response = await fetch('http://localhost:3000/ganador');
+      if (response.ok) {
+        const data = await response.json();
+        mensajeGanador.innerHTML = `🎉 ¡Felicidades ${data.ganador.nombre} ${data.ganador.apellido}! 🎉 <br> Correo: ${data.ganador.correo}`;
+        contenedorModalGanador.style.display = 'flex'; // Mostrar el modal con el ganador
+      } else {
+        mensajeGanador.innerHTML = 'No se encontró ningún participante.';
+        contenedorModalGanador.style.display = 'flex';
+      }
+    } catch (error) {
+      console.error('Error al obtener el ganador:', error);
+    }
+  }

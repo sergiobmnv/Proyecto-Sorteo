@@ -63,6 +63,45 @@ app.post('/participar', async (req, res) => {
   }
 });
 
+  /* Escoger un usuario aleatorio, registrado en la base de datos para darle el premio.*/
+  async function selectWinner() {
+    try {
+      const database = client.db('Sorteos');
+      const collection = database.collection('Villa-FC');
+      
+      // Contar el total de documentos (participantes) y seleccionar uno al azar
+      const count = await collection.countDocuments();
+      const randomIndex = Math.floor(Math.random() * count);
+      const winner = await collection.find().limit(1).skip(randomIndex).next();
+      
+      return winner;
+    } catch (error) {
+      console.error('Error al seleccionar ganador:', error);
+      throw error;
+    }
+  }
+
+  app.get('/ganador', async (req, res) => {
+    try {
+      const winner = await selectWinner();
+      if (winner) {
+        res.status(200).json({
+          message: 'Ganador seleccionado',
+          ganador: {
+            nombre: winner.nombre,
+            apellido: winner.apellido,
+            correo: winner.correo
+          }
+        });
+      } else {
+        res.status(404).json({ message: 'No se encontró ningún participante' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Error al seleccionar el ganador' });
+    }
+  });
+
+
 // Iniciar el servidor y la conexión a la base de datos
 connectToDatabase().then(() => {
   app.listen(port, () => {
