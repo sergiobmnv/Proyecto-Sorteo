@@ -90,21 +90,3 @@ function mostrarCierreSorteo() {
     document.body.appendChild(mensajeCierre); // Agregar el mensaje al body
     mostrarGanador(); // Llama a la función para mostrar el ganador
 }
-
-// Función para mostrar el modal del ganador
-function mostrarGanador() {
-    contenedorModalGanador.style.display = "flex";
-    mensajeGanador.innerHTML = "¡Gracias por participar! El sorteo ha finalizado.";
-}
-
-// Evento para cerrar el modal al pulsar fuera
-window.addEventListener("click", function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-});
-
-// Evento para cerrar el modal del ganador
-cerrarModalGanador.addEventListener("click", function() {
-    contenedorModalGanador.style.display = "none";
-});
