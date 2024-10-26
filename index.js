@@ -1,13 +1,13 @@
-const modal = document.getElementById("contenedor-modal");
-const formulario = document.getElementById("form");
-const btn = document.getElementById("botonParticipar");
-const cuentaAtras = document.getElementById("cuenta-Atras");
-const contenedorModalGanador = document.querySelector(".contenedor-modal-ganador");
-const mensajeGanador = document.querySelector(".modal-ganador p");
-const cerrarModalGanador = document.getElementById("cerrar-modal-ganador");
+const modal = document.getElementById("contenedor-modal"); // Modal de confirmación
+const formulario = document.getElementById("form"); // Formulario
+const btn = document.getElementById("botonParticipar"); // Botón para participar
+const cuentaAtras = document.getElementById("cuenta-Atras"); // Contador hacia atrás
+const contenedorModalGanador = document.querySelector(".contenedor-modal-ganador"); // Modal de ganador
+const mensajeGanador = document.querySelector(".modal-ganador p"); // Mensaje en modal del ganador
+const cerrarModalGanador = document.getElementById("cerrar-modal-ganador"); // Botón cerrar modal ganador
 
 // Fecha y hora del final del sorteo
-const fechaFinal = new Date("October 26, 2024 16:08:00").getTime();
+const fechaFinal = new Date("October 29, 2024 12:00:00").getTime();
 
 // Actualizar la cuenta regresiva cada segundo
 const x = setInterval(function() {
@@ -27,15 +27,13 @@ const x = setInterval(function() {
     if (distancia < 0) {
         clearInterval(x);
         cuentaAtras.innerHTML = "El sorteo ha terminado";
-
-        // Mostrar mensaje de cierre del sorteo
         mostrarCierreSorteo();
     }
 }, 1000);
 
 // Manejo del formulario
 formulario.addEventListener('submit', async function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evita el envío normal del formulario
 
     btn.value = 'Sending...';
 
@@ -67,8 +65,8 @@ formulario.addEventListener('submit', async function(event) {
         if (response.ok) {
             await emailjs.sendForm(serviceID, templateID, this);
             btn.value = 'Send Email';
-            modal.style.display = "block";
-            formulario.reset();
+            modal.style.display = "flex"; // Mostrar el modal de confirmación
+            formulario.reset(); // Reiniciar el formulario
         } else {
             btn.value = 'Send Email';
             console.error('Error al enviar los datos', response.statusText);
@@ -91,21 +89,44 @@ function mostrarCierreSorteo() {
     mostrarGanador(); // Llama a la función para mostrar el ganador
 }
 
-
-//Mostrar Ganador.
-
+// Mostrar Ganador
 async function mostrarGanador() {
-  try {
-    const response = await fetch('http://localhost:3000/ganador');
-    if (response.ok) {
-      const data = await response.json();
-      mensajeGanador.innerHTML = `🎉 ¡Felicidades ${data.ganador.nombre} ${data.ganador.apellido}! 🎉 <br> Correo: ${data.ganador.correo}`;
-      contenedorModalGanador.style.display = 'flex'; // Mostrar el modal con el ganador
-    } else {
-      mensajeGanador.innerHTML = 'No se encontró ningún participante.';
-      contenedorModalGanador.style.display = 'flex';
+    try {
+        const response = await fetch('http://localhost:3000/ganador');
+        if (response.ok) {
+            const data = await response.json();
+            mensajeGanador.innerHTML = `🎉 ¡Felicidades ${data.ganador.nombre} ${data.ganador.apellido}! 🎉 <br> Correo: ${data.ganador.correo}`;
+            contenedorModalGanador.style.display = 'flex'; // Mostrar el modal con el ganador
+        } else {
+            mensajeGanador.innerHTML = 'No se encontró ningún participante.';
+            contenedorModalGanador.style.display = 'flex';
+        }
+    } catch (error) {
+        console.error('Error al obtener el ganador:', error);
     }
-  } catch (error) {
-    console.error('Error al obtener el ganador:', error);
-  }
 }
+
+// Manejar el cierre del modal de confirmación
+const cerrarModalBtn = document.getElementById("cerrar-modal"); // Botón cerrar modal
+cerrarModalBtn.addEventListener("click", () => {
+    modal.style.display = "none"; // Ocultar el modal al hacer clic en cerrar
+});
+
+// Manejar el cierre del modal del ganador
+cerrarModalGanador.addEventListener("click", () => {
+    contenedorModalGanador.style.display = "none"; // Ocultar el modal del ganador al hacer clic en cerrar
+});
+
+// Cerrar modal al hacer clic fuera de él
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none"; // Cierra el modal si se hace clic fuera de él
+    }
+});
+
+contenedorModalGanador.addEventListener("click", (e) => {
+    if (e.target === contenedorModalGanador) {
+        contenedorModalGanador.style.display = "none"; // Cierra el modal del ganador si se hace clic fuera de él
+    }
+});
+

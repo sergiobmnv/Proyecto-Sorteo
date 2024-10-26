@@ -41,27 +41,32 @@
         <button id="botonParticipar">Participar</button>
     </form>
 
+        <!--Cookies-->
+        <h1>Ejemplo de Cookies en JavaScript</h1>
+        <button id="set-cookie">Establecer Cookie</button>
+        <button id="get-cookie">Leer Cookie</button>
+        <button id="delete-cookie">Eliminar Cookie</button>
+        <p id="cookie-value"></p>
+
 
         <!--Modales-->
 
-        <!-- Modal para mostrar al ganador -->
-    <div class="contenedor-modal-ganador" id="contenedor-modal-ganador">
-        <div class="modal-ganador">
-        <p></p> <!-- Mensaje del ganador se mostrará aquí -->
-        <button id="cerrar-modal-ganador">Cerrar</button>
+        <div id="contenedor-modal" class="contenedor-modal">
+            <div class="modal">
+                <p>¡Gracias por participar!</p>
+                <button id="cerrar-modal">Cerrar</button> <!-- Botón para cerrar el modal -->
+            </div>
         </div>
-    </div>
-
-    <!-- Modal para Confirmación -->
-    <div class="contenedor-modal" id="contenedor-modal">
-        <div class="modal">
-            <p>Formulario Confirmado</p>
-            <p>¡Mucha suerte!</p>
-            <button id="cerrar-modal">Cerrar</button>
+        
+        <div class="contenedor-modal-ganador">
+            <div class="modal-ganador">
+                <p></p> <!-- Mensaje del ganador aquí -->
+                <button id="cerrar-modal-ganador">Cerrar</button> <!-- Botón para cerrar el modal del ganador -->
+            </div>
         </div>
-    </div>
 
     <script src='index.js'></script>
+    <script src="cookies.js" defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">emailjs.init('7dD0BJDjCYOJi1dep');</script>
 </body>
