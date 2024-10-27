@@ -79,17 +79,39 @@ formulario.addEventListener('submit', async function(event) {
 
 // Función para mostrar el mensaje de cierre del sorteo
 function mostrarCierreSorteo() {
-    formulario.style.display = "none"; // Ocultar el formulario
+    formulario.style.display = "none"; // Oculta el formulario para mostrar el otro mensaje.
     const mensajeCierre = document.createElement("div");
-    mensajeCierre.style.color = "#ff4757"; // Color del mensaje
-    mensajeCierre.style.fontSize = "24px"; // Tamaño del texto
-    mensajeCierre.style.textAlign = "center"; // Alineación del texto
+    mensajeCierre.style.color = "#ff4757"; 
+    mensajeCierre.style.fontSize = "24px"; 
+    mensajeCierre.style.textAlign = "center";
     mensajeCierre.innerHTML = "El sorteo ha cerrado. ¡Gracias por participar!";
-    document.body.appendChild(mensajeCierre); // Agregar el mensaje al body
-    mostrarGanador(); // Llama a la función para mostrar el ganador
+    document.body.appendChild(mensajeCierre); // Agrega el mensaje al body
+    mostrarGanador(); 
 }
 
-// Mostrar Ganador
+/* Cierre de modales  */
+const cerrarModalBtn = document.getElementById("cerrar-modal");
+cerrarModalBtn.addEventListener("click", () => {
+    modal.style.display = "none"; 
+});
+
+cerrarModalGanador.addEventListener("click", () => {
+    contenedorModalGanador.style.display = "none"; 
+});
+
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+contenedorModalGanador.addEventListener("click", (e) => {
+    if (e.target === contenedorModalGanador) {
+        contenedorModalGanador.style.display = "none";
+    }
+});
+
+
+/* Mostrar Ganador, se tiene que poner abajo del todo porque sino no sale la alerta */
 async function mostrarGanador() {
     try {
         const response = await fetch('http://localhost:3000/ganador');
@@ -105,28 +127,3 @@ async function mostrarGanador() {
         console.error('Error al obtener el ganador:', error);
     }
 }
-
-// Manejar el cierre del modal de confirmación
-const cerrarModalBtn = document.getElementById("cerrar-modal"); // Botón cerrar modal
-cerrarModalBtn.addEventListener("click", () => {
-    modal.style.display = "none"; // Ocultar el modal al hacer clic en cerrar
-});
-
-// Manejar el cierre del modal del ganador
-cerrarModalGanador.addEventListener("click", () => {
-    contenedorModalGanador.style.display = "none"; // Ocultar el modal del ganador al hacer clic en cerrar
-});
-
-// Cerrar modal al hacer clic fuera de él
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.style.display = "none"; // Cierra el modal si se hace clic fuera de él
-    }
-});
-
-contenedorModalGanador.addEventListener("click", (e) => {
-    if (e.target === contenedorModalGanador) {
-        contenedorModalGanador.style.display = "none"; // Cierra el modal del ganador si se hace clic fuera de él
-    }
-});
-
