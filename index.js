@@ -110,7 +110,6 @@ contenedorModalGanador.addEventListener("click", (e) => {
     }
 });
 
-
 /* Mostrar Ganador, se tiene que poner abajo del todo porque sino no sale la alerta */
 async function mostrarGanador() {
     try {
