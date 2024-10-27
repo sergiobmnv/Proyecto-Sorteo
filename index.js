@@ -45,7 +45,7 @@ formulario.addEventListener('submit', async function(event) {
     const apellido = document.getElementById("apellido").value;
 
     // Validar que los campos no estén vacíos
-    if (!nombre || !correo) {
+    if (!nombre || !correo || !apellido) {
         alert("Por favor, completa todos los campos.");
         btn.value = 'Send Email'; // Restaurar texto del botón
         return;
