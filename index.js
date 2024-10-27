@@ -127,3 +127,5 @@ async function mostrarGanador() {
         console.error('Error al obtener el ganador:', error);
     }
 }
+
+

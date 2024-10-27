@@ -1,4 +1,5 @@
-// main.js
+/* Tema de Cookies */
+
 document.addEventListener('DOMContentLoaded', () => {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
@@ -19,3 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
         cookieBanner.style.display = 'none'; // Ocultar el banner
     };
 });
+
+
