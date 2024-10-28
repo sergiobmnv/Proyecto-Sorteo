@@ -244,26 +244,3 @@ a {
     justify-content: center;
     gap: 15px; /* Espaciado entre los botones */
 }
-
-button,
-.read-more {
-    background-color: #ff4757;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover,
-.read-more:hover {
-    background-color: #ff6b81; /* Color más claro al pasar el ratón */
-}
-
-/* Estilo para el enlace "Leer Más" */
-.read-more {
-    text-decoration: none; /* Sin subrayado */
-    margin-top: 10px; /* Espaciado superior */
-}
