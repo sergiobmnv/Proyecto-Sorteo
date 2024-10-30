@@ -7,7 +7,7 @@ const mensajeGanador = document.querySelector(".modal-ganador p"); // Mensaje en
 const cerrarModalGanador = document.getElementById("cerrar-modal-ganador"); // Botón cerrar modal ganador
 
 // Fecha y hora del final del sorteo
-const fechaFinal = new Date("October 29, 2024 12:00:00").getTime();
+const fechaFinal = new Date("October 30, 2024 9:05:00").getTime();
 
 // Actualizar la cuenta regresiva cada segundo
 const x = setInterval(function() {
